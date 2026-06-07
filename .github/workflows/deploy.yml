@@ -3,7 +3,7 @@ name: 🚀 Deploy Website to InfinityFree
 on:
   push:
     branches:
-      - main  # This matches your 'main' branch shown in the image
+      - main
 
 jobs:
   web-deploy:
@@ -16,8 +16,8 @@ jobs:
     - name: 📂 Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{ vars.FTP_SERVER }}
-        username: ${{ vars.FTP_USERNAME }}
-        password: ${{ vars.FTP_PASSWORD }}
-        server-dir: /htdocs/  # Uploads directly into InfinityFree's public folder
-###
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /htdocs/
+        state-name: .ftp-deploy-sync-state.json
